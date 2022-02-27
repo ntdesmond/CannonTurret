@@ -17,12 +17,26 @@ namespace Dummy
                 _isAlive = value;
                 foreach (var rb in GetComponentsInChildren<Rigidbody>())
                 {
-                    rb.isKinematic = value;
+                    if (rb.GetComponent<RandomBezierMove>() == null)
+                    {
+                        rb.isKinematic = value;
+                    }
                 }
-            
-                if (!_isAlive && removeOnDeath)
+
+                if (_isAlive)
+                {
+                    return;
+                }
+                
+                if (removeOnDeath)
                 {
                     _removeTimer = removeDelay;
+                }
+
+                var randomMove = GetComponent<RandomBezierMove>();
+                if (randomMove != null)
+                {
+                    randomMove.enabled = false;
                 }
             }
         }
