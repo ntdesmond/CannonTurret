@@ -29,12 +29,12 @@ namespace Dummy
         private bool _isAlive;
         private float _removeTimer;
     
-        public void Awake()
+        private void Awake()
         {
             IsAlive = isInitiallyAlive;
         }
 
-        public void Update()
+        private void Update()
         {
             if (_isAlive || !removeOnDeath)
             {
